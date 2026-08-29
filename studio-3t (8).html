@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio 3T — Top to toe | Salon krásy Brno, Černá Pole</title>
+<meta name="description" content="Studio 3T — kadeřnictví, kosmetika, nehtová modeláž a masáže v srdci Černých Polí, Brno. Zemědělská 17. Online rezervace, péče od hlavy až po paty.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:       '#1E1812',
+          espresso:  '#2B2119',
+          cream:     '#F5EFE4',
+          parchment: '#ECE1CC',
+          gold:      '#C7A164',
+          goldsoft:  '#E7D3A3',
+          charcoal:  '#2B2621',
+          muted:     '#8A8072',
+        },
+        fontFamily: {
+          display: ['"Fraunces"', 'serif'],
+          body: ['"Jost"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif; background-color: #F5EFE4; color: #2B2621;
+    opacity: 0; animation: pageFadeIn 0.9s ease forwards;
+  }
+  @keyframes pageFadeIn { to { opacity: 1; } }
+  h1, h2, h3, .font-display { font-family: 'Fraunces', serif; }
+  section, header { scroll-margin-top: 88px; }
+
+  .label { font-family: 'Jost', sans-serif; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; }
+
+  #site-header.scrolled { box-shadow: 0 12px 30px -18px rgba(0,0,0,0.55); background-color: rgba(30, 24, 18, 0.97); }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s cubic-bezier(.22,.61,.36,1), transform 0.8s cubic-bezier(.22,.61,.36,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal.d1.is-visible, .reveal.d1 { transition-delay: .08s; }
+  .reveal.d2 { transition-delay: .16s; }
+  .reveal.d3 { transition-delay: .24s; }
+  .reveal.d4 { transition-delay: .32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    body { animation: none; opacity: 1; }
+  }
+
+  .measure-rail { background: linear-gradient(to bottom, transparent, #C7A164 8%, #C7A164 92%, transparent); }
+  .measure-node { box-shadow: 0 0 0 4px #F5EFE4, 0 0 0 5px rgba(199,161,100,0.6); }
+
+  details[open] > summary .chev { transform: rotate(180deg); }
+  summary::-webkit-details-marker { display: none; }
+
+  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  #mobile-menu.open { max-height: 560px; }
+
+  ::selection { background: #C7A164; color: #1E1812; }
+
+  /* Animated underline for nav links */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px;
+    background: #C7A164; transform: scaleX(0); transform-origin: right; transition: transform .35s ease;
+  }
+  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Section title gold underline draw */
+  .title-rule { display:block; width: 56px; height: 2px; background: #C7A164; transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.22,.61,.36,1) .15s; }
+  .reveal.is-visible .title-rule { transform: scaleX(1); }
+
+  /* Button shine sweep */
+  .btn-shine { position: relative; overflow: hidden; }
+  .btn-shine::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 45%; height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-160%) skewX(-18deg); transition: transform .75s ease;
+  }
+  .btn-shine:hover::after { transform: translateX(280%) skewX(-18deg); }
+
+  /* Gentle floating blobs */
+  @keyframes floatSlow { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-18px) translateX(8px); } }
+  .float-slow { animation: floatSlow 9s ease-in-out infinite; }
+  .float-slow-rev { animation: floatSlow 11s ease-in-out infinite reverse; }
+
+  /* Pulsing call button */
+  @keyframes pulseRing {
+    0% { box-shadow: 0 0 0 0 rgba(199,161,100,0.55); }
+    70% { box-shadow: 0 0 0 16px rgba(199,161,100,0); }
+    100% { box-shadow: 0 0 0 0 rgba(199,161,100,0); }
+  }
+  .fab-pulse { animation: pulseRing 2.6s infinite; }
+
+  /* Card lift on hover */
+  .lift-hover { transition: transform .45s cubic-bezier(.22,.61,.36,1), box-shadow .45s ease; }
+  .lift-hover:hover { transform: translateY(-6px); }
+
+  /* Ken Burns hero image */
+  @keyframes kenburns { 0% { transform: scale(1.06) translateY(0); } 100% { transform: scale(1.14) translateY(-2%); } }
+  .kenburns { animation: kenburns 20s ease-in-out infinite alternate; }
+
+  /* Status box */
+  .status-box { transition: all .4s ease; }
+
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(56%) sepia(20%) saturate(700%) hue-rotate(2deg); cursor: pointer; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ============ HEADER ============ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-ink/85 backdrop-blur-sm transition-all duration-300 -translate-y-0">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between h-20">
+
+      <a href="#hero" class="flex items-baseline gap-3 shrink-0">
+        <span class="font-display text-2xl md:text-3xl tracking-wide text-cream">Studio<span class="text-gold"> 3T</span></span>
+        <span class="hidden sm:inline label text-[10px] text-goldsoft/80">Top to toe</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#sluzby" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">Služby</a>
+        <a href="#o-nas" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">O&nbsp;nás</a>
+        <a href="#tym" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">Tým</a>
+        <a href="#cenik" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">Ceník</a>
+        <a href="#rezervace" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">Rezervace</a>
+        <a href="#kontakt" class="nav-link label text-xs text-cream/80 hover:text-gold transition-colors">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:+420608156297" aria-label="Zavolat do salonu" class="hidden md:inline-flex items-center justify-center w-11 h-11 border border-goldsoft/30 text-gold hover:bg-gold hover:text-ink transition-colors duration-300">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#rezervace" class="btn-shine hidden md:inline-flex items-center label text-xs px-6 py-3 border border-gold text-gold hover:bg-gold hover:text-ink transition-colors duration-300">
+          Rezervovat termín
+        </a>
+        <button id="menu-btn" aria-label="Otevřít menu" aria-expanded="false" class="lg:hidden text-cream w-8 h-8 flex flex-col items-center justify-center gap-[5px]">
+          <span class="block w-6 h-px bg-current transition-transform"></span>
+          <span class="block w-6 h-px bg-current transition-opacity"></span>
+          <span class="block w-6 h-px bg-current transition-transform"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden">
+      <nav class="flex flex-col gap-1 pb-6 pt-2 border-t border-goldsoft/10">
+        <a href="#sluzby" class="label text-xs text-cream/85 py-3">Služby</a>
+        <a href="#o-nas" class="label text-xs text-cream/85 py-3">O nás</a>
+        <a href="#tym" class="label text-xs text-cream/85 py-3">Tým</a>
+        <a href="#cenik" class="label text-xs text-cream/85 py-3">Ceník</a>
+        <a href="#rezervace" class="label text-xs text-cream/85 py-3">Rezervace</a>
+        <a href="#kontakt" class="label text-xs text-cream/85 py-3">Kontakt</a>
+        <a href="tel:+420608156297" class="label text-xs text-gold py-3">Zavolat do salonu: +420 608 156 297</a>
+        <a href="#rezervace" class="label text-xs mt-3 inline-flex justify-center px-6 py-3 border border-gold text-gold">Rezervovat termín</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative min-h-screen flex items-end md:items-center overflow-hidden pt-28 pb-20">
+  <!-- background photo -->
+  <div class="absolute inset-0 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1781450090585-1a511b7066d9?auto=format&fit=crop&w=1800&q=80"
+         alt="Interiér salonu Studio 3T" class="w-full h-full object-cover kenburns">
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(30,24,18,.75) 0%, rgba(30,24,18,.55) 45%, rgba(30,24,18,.92) 100%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(circle at 15% 25%, rgba(199,161,100,0.22), transparent 45%);"></div>
+  </div>
+
+  <!-- floating gold accents -->
+  <div class="absolute top-24 right-10 w-32 h-32 rounded-full bg-gold/10 blur-2xl float-slow hidden md:block"></div>
+  <div class="absolute bottom-40 right-1/3 w-24 h-24 rounded-full bg-goldsoft/10 blur-2xl float-slow-rev hidden md:block"></div>
+  <div class="absolute -right-24 top-0 bottom-0 w-px measure-rail hidden md:block"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-12 items-end">
+    <div class="lg:col-span-8">
+      <p class="label text-xs text-goldsoft mb-6 reveal">Zemědělská 17 · Brno – Černá Pole</p>
+      <h1 class="font-display text-cream leading-[1.05] text-[2.6rem] sm:text-6xl lg:text-[5.2rem] reveal d1">
+        Krása<br>
+        <span class="italic text-gold">od hlavy</span><br>
+        až po paty.
+      </h1>
+      <p class="mt-8 max-w-md text-cream/75 text-base leading-relaxed reveal d2">
+        Kadeřnictví, kosmetika, nehty i masáže pod jednou střechou — komplexní péče
+        šitá na míru, v klidném prostředí v srdci Černých Polí.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-6 reveal d3">
+        <a href="#rezervace" class="btn-shine inline-flex items-center gap-3 label text-xs bg-gold text-ink px-8 py-4 hover:bg-goldsoft transition-colors duration-300">
+          Rezervovat termín
+        </a>
+        <a href="tel:+420608156297" class="inline-flex items-center gap-2 label text-xs text-cream/80 hover:text-gold border-b border-cream/30 hover:border-gold pb-1 transition-colors">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +420 608 156 297
+        </a>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4 hidden lg:flex flex-col items-start gap-2 pb-2 reveal d4">
+      <span class="label text-[10px] text-muted">Ve zkratce</span>
+      <ul class="font-display italic text-goldsoft/90 text-lg leading-relaxed">
+        <li>Vlasy — Pleť</li>
+        <li>Ruce — Nohy</li>
+        <li>Tělo — Klid</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <a href="#sluzby" aria-label="Posunout dolů" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-cream/50 hover:text-gold transition-colors">
+    <span class="label text-[9px]">Posunout</span>
+    <span class="w-px h-8 bg-current"></span>
+  </a>
+</section>
+
+<!-- ============ SLUŽBY ============ -->
+<section id="sluzby" class="bg-cream py-28 md:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="title-rule mb-4"></span>
+      <p class="label text-xs text-gold mb-4">Naše služby</p>
+      <h2 class="font-display text-4xl md:text-5xl text-charcoal">Komplexní péče, <span class="italic">krok za krokem</span></h2>
+      <p class="mt-5 text-muted leading-relaxed">Naše zlatá linie vede tělem od hlavy až k patě — přesně podle filozofie
+      „Top to toe“. Vyberte si zastávku, která vám dnes udělá nejlépe.</p>
+    </div>
+
+    <!-- photo band -->
+    <div class="reveal mb-20 relative h-64 md:h-80 overflow-hidden group">
+      <img src="https://images.unsplash.com/photo-1700760934268-8aa0ef52ce0a?auto=format&fit=crop&w=1600&q=80"
+           alt="Střihání vlasů v salonu Studio 3T" class="w-full h-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105">
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(30,24,18,.65) 0%, rgba(30,24,18,.1) 55%);"></div>
+      <div class="absolute inset-0 flex items-center">
+        <p class="font-display italic text-2xl md:text-3xl text-cream px-8 md:px-12 max-w-md">„Každý střih začíná dobrým poslechem.“</p>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-px measure-rail"></div>
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-16">
+
+        <div class="reveal relative md:text-right md:pr-14 lift-hover">
+          <span class="hidden md:block absolute right-0 top-3 -mr-[7px] w-3 h-3 rounded-full bg-gold measure-node"></span>
+          <div class="flex md:justify-end items-center gap-4 mb-4">
+            <svg class="w-8 h-8 text-gold order-2 md:order-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M14 10 L34 34 M34 10 L14 34" stroke-linecap="round"/>
+              <circle cx="12" cy="9" r="3.2"/><circle cx="12" cy="35" r="3.2"/>
+              <circle cx="36" cy="9" r="3.2"/><circle cx="36" cy="35" r="3.2"/>
+            </svg>
+            <span class="label text-[10px] text-muted order-1 md:order-1">Zastávka 01 — Hlava</span>
+          </div>
+          <h3 class="font-display text-2xl text-charcoal mb-2">Kadeřnictví</h3>
+          <p class="text-muted text-sm leading-relaxed max-w-sm md:ml-auto">Dámské a pánské střihy, barvení, melíry i slavnostní styling — od
+          konzultace po finální detail.</p>
+        </div>
+
+        <div class="reveal relative md:pl-14 lift-hover">
+          <span class="hidden md:block absolute left-0 top-3 -ml-[7px] w-3 h-3 rounded-full bg-gold measure-node"></span>
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-8 h-8 text-gold" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M24 8c8 6 12 12 12 19a12 12 0 0 1-24 0c0-7 4-13 12-19Z"/>
+            </svg>
+            <span class="label text-[10px] text-muted">Zastávka 02 — Obličej</span>
+          </div>
+          <h3 class="font-display text-2xl text-charcoal mb-2">Kosmetika &amp; péče o pleť</h3>
+          <p class="text-muted text-sm leading-relaxed max-w-sm">Čištění, ošetření a líčení šité na míru typu pleti — pro přirozený,
+          odpočatý vzhled.</p>
+        </div>
+
+        <div class="reveal relative md:text-right md:pr-14 lift-hover">
+          <span class="hidden md:block absolute right-0 top-3 -mr-[7px] w-3 h-3 rounded-full bg-gold measure-node"></span>
+          <div class="flex md:justify-end items-center gap-4 mb-4">
+            <svg class="w-8 h-8 text-gold order-2" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M14 26V14a3 3 0 0 1 6 0v9M20 23V10a3 3 0 0 1 6 0v13M26 23V12a3 3 0 0 1 6 0v14M32 26v-8a3 3 0 0 1 6 0v12c0 6.6-5.4 12-12 12h-4c-4 0-6-1.6-8.4-5L10 30" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="label text-[10px] text-muted order-1">Zastávka 03 — Ruce &amp; nohy</span>
+          </div>
+          <h3 class="font-display text-2xl text-charcoal mb-2">Manikúra, modeláž &amp; pedikúra</h3>
+          <p class="text-muted text-sm leading-relaxed max-w-sm md:ml-auto">Klasická i gelová péče o nehty rukou a nohou, precizní tvary a
+          trvanlivé výsledky.</p>
+        </div>
+
+        <div class="reveal relative md:pl-14 lift-hover">
+          <span class="hidden md:block absolute left-0 top-3 -ml-[7px] w-3 h-3 rounded-full bg-gold measure-node"></span>
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-8 h-8 text-gold" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M24 6c9 0 9 8 4 10-5 2-9-1-9-1s3 5 9 5 9-4 9-4-1 8-9 10-14-2-14-10 4-10 10-10Z"/>
+            </svg>
+            <span class="label text-[10px] text-muted">Zastávka 04 — Tělo</span>
+          </div>
+          <h3 class="font-display text-2xl text-charcoal mb-2">Masáže &amp; orientální epilace</h3>
+          <p class="text-muted text-sm leading-relaxed max-w-sm">Relaxační i cílené masáže pro uvolnění těla a mysli, doplněné šetrnou
+          epilací cukrováním.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O SALONU & FILOZOFIE ============ -->
+<section id="o-nas" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0" style="background: linear-gradient(135deg, #1E1812 0%, #2B2119 100%);"></div>
+  <div class="absolute inset-0 opacity-[0.10]" style="background-image: radial-gradient(circle at 80% 30%, #C7A164 0, transparent 40%);"></div>
+  <div class="absolute top-1/4 left-10 w-40 h-40 rounded-full bg-gold/10 blur-3xl float-slow hidden md:block"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-16 items-center">
+    <div class="lg:col-span-5 reveal">
+      <div class="aspect-[4/5] w-full relative overflow-hidden border border-goldsoft/15">
+        <img src="https://images.unsplash.com/photo-1623171678074-1b04ff0e694f?auto=format&fit=crop&w=1200&q=80"
+             alt="Interiér Studio 3T" class="w-full h-full object-cover">
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 40%, rgba(30,24,18,.85) 100%);"></div>
+        <p class="absolute bottom-6 left-6 right-6 font-display italic text-gold text-xl">„Krása bez kompromisů, klid bez spěchu.“</p>
+      </div>
+    </div>
+    <div class="lg:col-span-7 reveal">
+      <span class="title-rule mb-4"></span>
+      <p class="label text-xs text-gold mb-4">O salonu &amp; filozofie</p>
+      <h2 class="font-display text-4xl md:text-5xl text-cream mb-6">Studio 3T je místo, kde si <span class="italic text-gold">vydechnete</span></h2>
+      <p class="text-cream/70 leading-relaxed max-w-xl">
+        V Studiu 3T věříme, že péče o krásu má být především péčí o pohodu.
+        Proto ke každému klientovi přistupujeme individuálně — nasloucháme,
+        radíme a pracujeme s citem pro detail. Naším cílem je, abyste odcházeli
+        nejen krásní, ale hlavně uvolnění.
+      </p>
+      <p class="text-cream/70 leading-relaxed max-w-xl mt-4">
+        Salon najdete v klidné čtvrti Černá Pole v Brně — v příjemném prostředí,
+        kde se snoubí profesionalita s domácí atmosférou.
+      </p>
+      <div class="mt-10 grid grid-cols-3 gap-8 max-w-md">
+        <div>
+          <p class="font-display text-3xl text-gold counter" data-target="100" data-suffix="%">0%</p>
+          <p class="label text-[10px] text-cream/50 mt-1">Individuální přístup</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl text-gold counter" data-target="4" data-suffix="">0</p>
+          <p class="label text-[10px] text-cream/50 mt-1">Obory péče</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl text-gold counter" data-target="1" data-suffix="">0</p>
+          <p class="label text-[10px] text-cream/50 mt-1">Adresa v Černých Polích</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TÝM ============ -->
+<section id="tym" class="bg-cream py-28 md:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="title-rule mb-4"></span>
+      <p class="label text-xs text-gold mb-4">Náš tým</p>
+      <h2 class="font-display text-4xl md:text-5xl text-charcoal">Ruce, kterým <span class="italic">můžete věřit</span></h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <div class="reveal lift-hover group">
+        <div class="aspect-[3/4] bg-espresso relative overflow-hidden flex items-center justify-center">
+          <span class="font-display text-6xl text-goldsoft/80">IB</span>
+          <div class="absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <h3 class="font-display text-xl text-charcoal mt-5">Ivana Brzobohatá</h3>
+        <p class="label text-[10px] text-gold mt-1">Vedoucí kadeřnice</p>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Přes dvě dekády praxe, specialistka na dámské střihy a barevné techniky
+        na míru.</p>
+        <a href="tel:+420608156297" class="inline-flex items-center gap-2 label text-[10px] text-charcoal border border-gold/50 px-3 py-1.5 mt-4 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +420 608 156 297
+        </a>
+      </div>
+
+      <div class="reveal d1 lift-hover group">
+        <div class="aspect-[3/4] bg-espresso relative overflow-hidden flex items-center justify-center">
+          <span class="font-display text-6xl text-goldsoft/80">EK</span>
+          <div class="absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <h3 class="font-display text-xl text-charcoal mt-5">Eva Konečná</h3>
+        <p class="label text-[10px] text-gold mt-1">Kadeřnice</p>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Specialistka na melíry, balayage a péči o vlasovou strukturu.</p>
+        <a href="tel:+420603328190" class="inline-flex items-center gap-2 label text-[10px] text-charcoal border border-gold/50 px-3 py-1.5 mt-4 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +420 603 328 190
+        </a>
+      </div>
+
+      <div class="reveal d2 lift-hover group">
+        <div class="aspect-[3/4] bg-espresso relative overflow-hidden flex items-center justify-center">
+          <span class="font-display text-6xl text-goldsoft/80">AS</span>
+          <div class="absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <h3 class="font-display text-xl text-charcoal mt-5">Alice Sehnalová</h3>
+        <p class="label text-[10px] text-gold mt-1">Kadeřnice</p>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Styling a svatební účesy — cit pro detail i pro velké dny.</p>
+        <a href="tel:+420724790702" class="inline-flex items-center gap-2 label text-[10px] text-charcoal border border-gold/50 px-3 py-1.5 mt-4 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +420 724 790 702
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Ostatní zaměstnankyně — poloviční velikost oproti kadeřnicím -->
+    <div class="reveal mt-14 pt-10 border-t border-charcoal/10 grid sm:grid-cols-3 gap-8">
+
+      <div class="lift-hover group flex sm:block items-center gap-4">
+        <div class="w-20 h-20 sm:w-full sm:aspect-[3/4] sm:max-w-[160px] shrink-0 bg-espresso relative overflow-hidden flex items-center justify-center rounded-full sm:rounded-none">
+          <span class="font-display text-2xl sm:text-4xl text-goldsoft/70">KO</span>
+          <div class="hidden sm:block absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <div>
+          <h3 class="font-display text-lg text-charcoal/90 mt-0 sm:mt-3">Ivana Burešová</h3>
+          <p class="label text-[9px] text-gold mt-0.5">Kosmetička</p>
+          <a href="tel:+420602684344" class="inline-flex items-center gap-1.5 label text-[10px] text-charcoal/80 border border-gold/40 px-2.5 py-1 mt-2 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+            <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +420 602 684 344
+          </a>
+        </div>
+      </div>
+
+      <div class="lift-hover group flex sm:block items-center gap-4">
+        <div class="w-20 h-20 sm:w-full sm:aspect-[3/4] sm:max-w-[160px] shrink-0 bg-espresso relative overflow-hidden flex items-center justify-center rounded-full sm:rounded-none">
+          <span class="font-display text-2xl sm:text-4xl text-goldsoft/70">PE</span>
+          <div class="hidden sm:block absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <div>
+          <h3 class="font-display text-lg text-charcoal/90 mt-0 sm:mt-3">Julija Hučková</h3>
+          <p class="label text-[9px] text-gold mt-0.5">Pedikúra &amp; nehty</p>
+          <a href="tel:+420605937982" class="inline-flex items-center gap-1.5 label text-[10px] text-charcoal/80 border border-gold/40 px-2.5 py-1 mt-2 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+            <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +420 605 937 982
+          </a>
+        </div>
+      </div>
+
+      <div class="lift-hover group flex sm:block items-center gap-4">
+        <div class="w-20 h-20 sm:w-full sm:aspect-[3/4] sm:max-w-[160px] shrink-0 bg-espresso relative overflow-hidden flex items-center justify-center rounded-full sm:rounded-none">
+          <span class="font-display text-2xl sm:text-4xl text-goldsoft/70">OE</span>
+          <div class="hidden sm:block absolute inset-x-0 bottom-0 h-1 bg-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
+        <div>
+          <h3 class="font-display text-lg text-charcoal/90 mt-0 sm:mt-3">Eva Šacherová</h3>
+          <p class="label text-[9px] text-gold mt-0.5">Masáže &amp; orientální péče</p>
+          <a href="tel:+420774960877" class="inline-flex items-center gap-1.5 label text-[10px] text-charcoal/80 border border-gold/40 px-2.5 py-1 mt-2 hover:bg-gold hover:text-ink hover:border-gold transition-colors">
+            <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +420 774 960 877
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hlavní kontakt na salon -->
+    <div class="reveal mt-14 bg-ink text-cream p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <p class="label text-[10px] text-gold mb-2">Hlavní kontakt</p>
+        <p class="font-display text-2xl">Nejste si jistí, koho vybrat?</p>
+        <p class="text-cream/60 text-sm mt-1">Zavolejte přímo do salonu, rádi vás propojíme se správnou specialistkou — nebo použijte přímé číslo u konkrétní osoby výše.</p>
+      </div>
+      <a href="tel:+420608156297" class="btn-shine shrink-0 inline-flex items-center gap-3 label text-xs bg-gold text-ink px-7 py-4 hover:bg-goldsoft transition-colors">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        +420 608 156 297 (salon)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CENÍK ============ -->
+<section id="cenik" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0" style="background: linear-gradient(160deg, #1E1812 0%, #2B2119 100%);"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="title-rule mb-4"></span>
+      <p class="label text-xs text-gold mb-4">Ceník</p>
+      <h2 class="font-display text-4xl md:text-5xl text-cream">Orientační <span class="italic text-gold">ceny</span></h2>
+      <p class="mt-5 text-cream/60 leading-relaxed">Konečná cena se odvíjí od délky a hustoty vlasů, zvolené techniky a
+      rozsahu ošetření. Přesnou cenu vám rádi upřesníme při rezervaci.</p>
+    </div>
+
+    <div class="reveal space-y-4 max-w-3xl">
+
+      <details class="group border-t border-goldsoft/15" open>
+        <summary class="flex items-center justify-between py-6 cursor-pointer list-none">
+          <span class="font-display text-xl md:text-2xl text-cream">Kadeřnictví</span>
+          <svg class="chev w-4 h-4 text-gold transition-transform duration-300" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="pb-8 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Dámský střih</span><span class="text-gold">od 450 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Pánský střih</span><span class="text-gold">od 300 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Barvení vlasů</span><span class="text-gold">od 900 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Melír / Balayage</span><span class="text-gold">od 1 500 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Styling / společenský účes</span><span class="text-gold">od 500 Kč</span></div>
+        </div>
+      </details>
+
+      <details class="group border-t border-goldsoft/15">
+        <summary class="flex items-center justify-between py-6 cursor-pointer list-none">
+          <span class="font-display text-xl md:text-2xl text-cream">Kosmetika</span>
+          <svg class="chev w-4 h-4 text-gold transition-transform duration-300" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="pb-8 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Kosmetické ošetření pleti</span><span class="text-gold">od 800 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Hloubkové čištění pleti</span><span class="text-gold">od 700 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Denní / večerní líčení</span><span class="text-gold">od 600 Kč</span></div>
+        </div>
+      </details>
+
+      <details class="group border-t border-goldsoft/15">
+        <summary class="flex items-center justify-between py-6 cursor-pointer list-none">
+          <span class="font-display text-xl md:text-2xl text-cream">Manikúra &amp; pedikúra</span>
+          <svg class="chev w-4 h-4 text-gold transition-transform duration-300" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="pb-8 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Klasická manikúra</span><span class="text-gold">od 400 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Gelová modeláž nehtů</span><span class="text-gold">od 700 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Pedikúra</span><span class="text-gold">od 550 Kč</span></div>
+        </div>
+      </details>
+
+      <details class="group border-t border-b border-goldsoft/15">
+        <summary class="flex items-center justify-between py-6 cursor-pointer list-none">
+          <span class="font-display text-xl md:text-2xl text-cream">Masáže &amp; epilace</span>
+          <svg class="chev w-4 h-4 text-gold transition-transform duration-300" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="pb-8 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Relaxační masáž 60 min</span><span class="text-gold">od 800 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Masáž zad 30 min</span><span class="text-gold">od 450 Kč</span></div>
+          <div class="flex justify-between border-b border-goldsoft/10 py-2"><span class="text-cream/75">Orientální epilace (nohy celé)</span><span class="text-gold">od 500 Kč</span></div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ REZERVACE ============ -->
+<section id="rezervace" class="bg-cream py-28 md:py-36">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="reveal text-center max-w-2xl mx-auto mb-14">
+      <span class="title-rule mx-auto mb-4"></span>
+      <p class="label text-xs text-gold mb-4">Online rezervace</p>
+      <h2 class="font-display text-4xl md:text-5xl text-charcoal">Zarezervujte si <span class="italic">svůj čas</span></h2>
+      <p class="mt-5 text-muted leading-relaxed">Vyberte den a čas dle otevírací doby kadeřnictví. Potvrzení rezervace
+      vám přijde na zadaný e-mail.</p>
+    </div>
+
+    <form id="booking-form" class="reveal bg-white border border-charcoal/10 p-8 md:p-12 grid sm:grid-cols-2 gap-6">
+
+      <div class="sm:col-span-1">
+        <label for="b-name" class="label text-[10px] text-muted block mb-2">Jméno a příjmení *</label>
+        <input id="b-name" name="name" type="text" required
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-email" class="label text-[10px] text-muted block mb-2">E-mail *</label>
+        <input id="b-email" name="email" type="email" required
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-phone" class="label text-[10px] text-muted block mb-2">Telefon *</label>
+        <input id="b-phone" name="phone" type="tel" required
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-service" class="label text-[10px] text-muted block mb-2">Služba *</label>
+        <select id="b-service" name="service" required
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+          <option value="">Vyberte službu</option>
+          <option>Dámský střih</option>
+          <option>Pánský střih</option>
+          <option>Barvení vlasů</option>
+          <option>Melír / Balayage</option>
+          <option>Styling / společenský účes</option>
+          <option>Jiné (kosmetika, nehty, masáž) — upřesníme telefonicky</option>
+        </select>
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-stylist" class="label text-[10px] text-muted block mb-2">Preferovaná kadeřnice</label>
+        <select id="b-stylist" name="stylist"
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+          <option value="Nezáleží">Nezáleží</option>
+          <option>Ivana Brzobohatá</option>
+          <option>Eva Konečná</option>
+          <option>Alice Sehnalová</option>
+        </select>
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-date" class="label text-[10px] text-muted block mb-2">Datum *</label>
+        <input id="b-date" name="date" type="date" required
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors">
+      </div>
+
+      <div class="sm:col-span-1">
+        <label for="b-time" class="label text-[10px] text-muted block mb-2">Čas *</label>
+        <select id="b-time" name="time" required disabled
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors disabled:text-muted/50">
+          <option value="">Nejprve vyberte den</option>
+        </select>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="b-notes" class="label text-[10px] text-muted block mb-2">Poznámka</label>
+        <textarea id="b-notes" name="notes" rows="3"
+          class="w-full border-b border-charcoal/20 focus:border-gold outline-none py-2.5 bg-transparent transition-colors resize-none"></textarea>
+      </div>
+
+      <p class="sm:col-span-2 text-xs text-muted/80 -mt-2">
+        Otevírací doba kadeřnictví: Pondělí až pátek 8:00–18:00. O víkendu je zavřeno.
+      </p>
+
+      <div id="booking-status" class="sm:col-span-2 hidden status-box p-5 text-sm leading-relaxed"></div>
+
+      <div class="sm:col-span-2">
+        <button type="submit" id="booking-submit" class="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-3 label text-xs bg-ink text-cream px-9 py-4 hover:bg-espresso transition-colors">
+          Odeslat rezervaci
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section id="kontakt" class="bg-cream py-28 md:py-36 border-t border-charcoal/10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="title-rule mb-4"></span>
+      <p class="label text-xs text-gold mb-4">Kontakt &amp; lokace</p>
+      <h2 class="font-display text-4xl md:text-5xl text-charcoal">Najdete nás v <span class="italic">Černých Polích</span></h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+      <div class="reveal space-y-10">
+        <div>
+          <p class="label text-[10px] text-gold mb-2">Adresa</p>
+          <p class="font-display text-2xl text-charcoal">Zemědělská 17</p>
+          <p class="text-muted">613 00 Brno – Černá Pole</p>
+        </div>
+
+        <div>
+          <p class="label text-[10px] text-gold mb-2">Objednávky</p>
+          <div class="flex flex-wrap gap-3 mt-3">
+            <a href="tel:+420608156297" class="btn-shine inline-flex items-center gap-2 label text-xs bg-ink text-cream px-6 py-3.5 hover:bg-espresso transition-colors">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Zavolat do salonu: +420 608 156 297
+            </a>
+          </div>
+          <p class="text-muted text-sm mt-3">Přímé telefonní číslo na konkrétní kadeřnici nebo specialistku najdete u jejího profilu v sekci <a href="#tym" class="text-gold hover:underline">Tým</a>.</p>
+          <button id="save-contact" class="mt-4 inline-flex items-center gap-2 label text-[10px] text-muted hover:text-gold transition-colors underline decoration-dotted underline-offset-4">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4v10m0 0 4-4m-4 4-4-4M5 17v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Uložit kontakt do telefonu
+          </button>
+        </div>
+
+        <div>
+          <p class="label text-[10px] text-gold mb-2">Doprava &amp; parkování</p>
+          <ul class="text-muted text-sm leading-relaxed space-y-1">
+            <li>— MHD: tramvajová zastávka <span class="text-charcoal">Zemědělská</span> nebo trolejbusová zastávka <span class="text-charcoal">Lesnická</span>, obě pár kroků od salonu.</li>
+            <li>— Autem: možnost parkování v přilehlých ulicích Černých Polí.</li>
+            <li>— Doporučujeme počítat s rezervou 5 minut na příchod před termínem.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="aspect-[4/3] w-full border border-charcoal/10 overflow-hidden bg-espresso">
+          <iframe
+            title="Mapa — Studio 3T, Zemědělská 17, Brno"
+            src="https://www.google.com/maps?q=Zem%C4%9Bd%C4%9Blsk%C3%A1%2017%2C%20613%2000%20Brno&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATIČKA ============ -->
+<footer class="bg-ink pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-3 gap-12 pb-14 border-b border-goldsoft/10">
+
+      <div>
+        <span class="font-display text-2xl text-cream">Studio<span class="text-gold"> 3T</span></span>
+        <p class="label text-[10px] text-goldsoft/70 mt-2">Top to toe</p>
+        <p class="text-cream/50 text-sm mt-4 max-w-xs leading-relaxed">Zemědělská 17, 613 00 Brno – Černá Pole</p>
+      </div>
+
+      <div>
+        <p class="label text-[10px] text-gold mb-4">Otevírací doba</p>
+        <ul class="text-cream/60 text-sm space-y-1.5">
+          <li class="flex justify-between max-w-[220px]"><span>Pondělí – Pátek</span><span>8:00–18:00</span></li>
+          <li class="flex justify-between max-w-[220px]"><span>Sobota – Neděle</span><span>Zavřeno</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="label text-[10px] text-gold mb-4">Sledujte nás</p>
+        <div class="flex gap-4">
+          <a href="#" aria-label="Instagram" class="w-10 h-10 border border-goldsoft/25 flex items-center justify-center text-cream/70 hover:text-gold hover:border-gold transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-10 h-10 border border-goldsoft/25 flex items-center justify-center text-cream/70 hover:text-gold hover:border-gold transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v7h3v-7h2.2l.8-3H14v-1.5c0-.6.4-1 1-1h1.5V8Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-cream/35 text-xs">© <span id="year"></span> Studio 3T. Všechna práva vyhrazena.</p>
+      <p class="text-cream/35 text-xs">Brno – Černá Pole</p>
+    </div>
+    <p class="text-center text-cream/20 text-[10px] mt-6">Created by Oliver Hynek</p>
+  </div>
+</footer>
+
+<!-- Floating call button (mobile) -->
+<a href="tel:+420608156297" aria-label="Zavolat do salonu Studio 3T"
+   class="fab-pulse md:hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gold text-ink flex items-center justify-center shadow-lg">
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+
+<!-- EmailJS (client-side email sending, no backend needed) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Header scroll state ---------- */
+  const header = document.getElementById('site-header');
+  let lastScrollY = window.scrollY;
+  const onScroll = () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 12);
+
+    const menuEl = document.getElementById('mobile-menu');
+    const menuIsOpen = menuEl && menuEl.classList.contains('open');
+    if (!menuIsOpen && y > lastScrollY && y > 140) {
+      header.classList.add('-translate-y-full'); // scrolling down — hide
+    } else {
+      header.classList.remove('-translate-y-full'); // scrolling up / near top — show
+    }
+    lastScrollY = y;
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bars = menuBtn.querySelectorAll('span');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    bars[0].style.transform = isOpen ? 'translateY(6px) rotate(45deg)' : '';
+    bars[1].style.opacity = isOpen ? '0' : '1';
+    bars[2].style.transform = isOpen ? 'translateY(-6px) rotate(-45deg)' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+    bars[0].style.transform = ''; bars[1].style.opacity = '1'; bars[2].style.transform = '';
+  }));
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* ---------- Count-up stats ---------- */
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(progress * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterIO.observe(el));
+
+  /* ---------- Hero parallax ---------- */
+  const heroImg = document.querySelector('#hero img');
+  window.addEventListener('scroll', () => {
+    if (!heroImg) return;
+    const y = window.scrollY;
+    if (y < window.innerHeight) heroImg.style.transform = `translateY(${y * 0.12}px)`;
+  }, { passive: true });
+
+  /* ---------- Save contact to phone (vCard) ---------- */
+  document.getElementById('save-contact').addEventListener('click', () => {
+    const vcard = [
+      'BEGIN:VCARD', 'VERSION:3.0',
+      'N:;Studio 3T;;;', 'FN:Studio 3T - Kadeřnictví', 'ORG:Studio 3T',
+      'TEL;TYPE=WORK,VOICE:+420608156297',
+      'ADR;TYPE=WORK:;;Zemědělská 17;Brno;;613 00;Česká republika',
+      'END:VCARD'
+    ].join('\n');
+    const blob = new Blob([vcard], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'Studio3T.vcf'; a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  /* =====================================================
+     REZERVAČNÍ SYSTÉM — den/čas dle otevírací doby
+     Po–Pá 8:00–18:00, So a Ne zavřeno
+     ===================================================== */
+  const OPENING_HOURS = { 0: null, 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: null };
+
+  function generateSlots(day) {
+    const range = OPENING_HOURS[day];
+    if (!range) return [];
+    const [open, close] = range;
+    const lastMinutes = close * 60 - 60; // last booking 1h before close
+    const slots = [];
+    for (let mins = open * 60; mins <= lastMinutes; mins += 30) {
+      const h = String(Math.floor(mins / 60)).padStart(2, '0');
+      const m = String(mins % 60).padStart(2, '0');
+      slots.push(`${h}:${m}`);
+    }
+    return slots;
+  }
+
+  const dateInput = document.getElementById('b-date');
+  const timeSelect = document.getElementById('b-time');
+  const today = new Date();
+  dateInput.min = today.toISOString().split('T')[0];
+
+  dateInput.addEventListener('change', () => {
+    if (!dateInput.value) return;
+    const d = new Date(dateInput.value + 'T00:00:00');
+    const slots = generateSlots(d.getDay());
+    if (slots.length === 0) {
+      timeSelect.innerHTML = '<option value="">V neděli máme zavřeno — vyberte jiný den</option>';
+      timeSelect.disabled = true;
+      dateInput.setCustomValidity('V neděli máme zavřeno, vyberte prosím jiný den.');
+    } else {
+      dateInput.setCustomValidity('');
+      timeSelect.disabled = false;
+      timeSelect.innerHTML = '<option value="">Vyberte čas</option>' +
+        slots.map(s => `<option value="${s}">${s}</option>`).join('');
+    }
+  });
+
+  /* =====================================================
+     ODESLÁNÍ REZERVACE + POTVRZOVACÍ E-MAIL (EmailJS)
+     Pro plnou funkčnost doplňte vlastní údaje z účtu
+     na https://www.emailjs.com (zdarma):
+       1) EMAILJS_PUBLIC_KEY  — Account > General
+       2) EMAILJS_SERVICE_ID  — Email Services
+       3) EMAILJS_TEMPLATE_ID — Email Templates
+     Šablona (Template) by měla použít proměnné:
+       {{to_name}} {{to_email}} {{phone}} {{service}}
+       {{stylist}} {{date}} {{time}} {{notes}}
+     Dokud nejsou údaje doplněny, formulář automaticky
+     nabídne odeslání rezervace e-mailem ručně (mailto).
+     ===================================================== */
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const SALON_EMAIL = 'info@studio3t.cz';
+  const isEmailJsConfigured = EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'
+    && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID'
+    && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID';
+
+  if (window.emailjs && isEmailJsConfigured) {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  const form = document.getElementById('booking-form');
+  const statusBox = document.getElementById('booking-status');
+  const submitBtn = document.getElementById('booking-submit');
+
+  function showStatus(kind, message, actionHref, actionLabel) {
+    statusBox.classList.remove('hidden');
+    const palette = kind === 'success'
+      ? 'bg-gold/10 border border-gold/40 text-charcoal'
+      : 'bg-charcoal/5 border border-charcoal/20 text-charcoal';
+    statusBox.className = `sm:col-span-2 status-box p-5 text-sm leading-relaxed ${palette}`;
+    statusBox.innerHTML = `<p>${message}</p>` +
+      (actionHref ? `<a href="${actionHref}" class="inline-flex mt-3 label text-[10px] text-gold underline underline-offset-4">${actionLabel}</a>` : '');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const params = {
+      to_name: data.get('name'),
+      to_email: data.get('email'),
+      phone: data.get('phone'),
+      service: data.get('service'),
+      stylist: data.get('stylist') || 'Nezáleží',
+      date: data.get('date'),
+      time: data.get('time'),
+      notes: data.get('notes') || '—',
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Odesílám…';
+
+    try {
+      if (!isEmailJsConfigured) throw new Error('EmailJS není nakonfigurováno');
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      showStatus('success', `Děkujeme, ${params.to_name}! Vaše rezervace na <strong>${params.date} v ${params.time}</strong> (${params.service}) byla úspěšně odeslána. Potvrzení dorazí na ${params.to_email}.`);
+      form.reset();
+      timeSelect.innerHTML = '<option value="">Nejprve vyberte den</option>';
+      timeSelect.disabled = true;
+    } catch (err) {
+      const subject = encodeURIComponent('Rezervace — Studio 3T');
+      const body = encodeURIComponent(
+        `Jméno: ${params.to_name}\nE-mail: ${params.to_email}\nTelefon: ${params.phone}\nSlužba: ${params.service}\nKadeřnice: ${params.stylist}\nDatum: ${params.date}\nČas: ${params.time}\nPoznámka: ${params.notes}`
+      );
+      showStatus(
+        'fallback',
+        'Rezervaci se nepodařilo odeslat automaticky (formulář zatím čeká na propojení s e-mailovou službou). Dokončete ji prosím kliknutím níže, nebo nám rovnou zavolejte.',
+        `mailto:${SALON_EMAIL}?subject=${subject}&body=${body}`,
+        'Odeslat rezervaci e-mailem ručně →'
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Odeslat rezervaci';
+    }
+  });
+</script>
+
+</body>
+</html>
